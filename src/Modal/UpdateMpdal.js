@@ -1,7 +1,22 @@
-// Popup.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export const UpdateModal = ({ isOpen, onClose, onUpdate, formData, onFormChange }) => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('https://leads-project-7.onrender.com/product/getProduct');
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching products', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     if (!isOpen) return null;
 
     return (
@@ -40,8 +55,12 @@ export const UpdateModal = ({ isOpen, onClose, onUpdate, formData, onFormChange 
                         className="w-full p-2 mb-4 border border-gray-300 rounded-md"
                     >
                         <option value="">Select Product</option>
+                        {products.map(product => (
+                            <option key={product._id} value={product._id}>
+                                {product.name}
+                            </option>
+                        ))}
                     </select>
-                   
                     <div className="flex justify-between">
                         <button
                             type="submit"
@@ -62,4 +81,3 @@ export const UpdateModal = ({ isOpen, onClose, onUpdate, formData, onFormChange 
         </div>
     );
 };
-
