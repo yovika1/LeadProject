@@ -11,7 +11,7 @@ const ForgotUsername = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8080/forgotuser', {
+            const response = await axios.post('https://leads-project-7.onrender.com/forgotuser', {
                 UserName: username,
                 Password: password,
             });

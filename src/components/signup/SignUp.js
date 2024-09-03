@@ -15,7 +15,7 @@ export const SignUp = () => {
     e.preventDefault()
     setloading(true)
     try {
-      const res = await axios.post('http://localhost:8080/register',{
+      const res = await axios.post('https://leads-project-7.onrender.com/register',{
         UserName:credentials.UserName,
         Password:credentials.Password,
         Name:credentials.Name,

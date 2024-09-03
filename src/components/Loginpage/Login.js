@@ -36,7 +36,7 @@ export const Login = () => {
     setMessage(""); // Clear message if CAPTCHA is valid
 
     try {
-      const resLogin = await axios.post("http://localhost:8080/loginuser", {
+      const resLogin = await axios.post("https:/leads-project-7.onrender.com/loginuser", {
         UserName: value.UserName,
         password: value.password,
       });

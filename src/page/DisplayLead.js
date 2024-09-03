@@ -29,7 +29,7 @@ export const LeadList = () => {
 
     const fetchLeads = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/leads/search', { params: filters });
+            const response = await axios.get('https://leads-project-7.onrender.com/leads/search', { params: filters });
             setLeads(response.data);
         } catch (error) {
             console.error('Error fetching leads:', error);
@@ -64,7 +64,7 @@ export const LeadList = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8080/leads/update/${editingLead._id}`, editForm);
+            await axios.put(`https://leads-project-7.onrender.com/leads/update/${editingLead._id}`, editForm);
             setEditingLead(null);
             setEditForm({
                 name: '',
@@ -80,7 +80,7 @@ export const LeadList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/leads/delete/${id}`);
+            await axios.delete(`https://leads-project-7.onrender.com/leads/delete/${id}`);
             setLeads(leads.filter(lead => lead._id !== id));
         } catch (error) {
             console.error('Error deleting lead:', error);
@@ -91,7 +91,7 @@ export const LeadList = () => {
         // Fetch products from the backend API
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/product/getProduct');
+                const response = await axios.get('https://leads-project-7.onrender.com/product/getProduct');
                 setProducts(response.data);
             } catch (error) {
                 console.error('Error fetching products', error);

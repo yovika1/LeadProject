@@ -18,7 +18,7 @@ export const LeadsFlow = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/product/getProduct');
+        const response = await axios.get('https://leads-project-7.onrender.com/product/getProduct');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -40,7 +40,7 @@ export const LeadsFlow = () => {
     setErrorMessage('');
     
     try {
-      const response = await axios.post('http://localhost:8080/leads/create', lead);
+      const response = await axios.post('https://leads-project-7.onrender.com/leads/create', lead);
       setSuccessMessage('Lead created successfully!'); 
       setLead({
         name: '',
