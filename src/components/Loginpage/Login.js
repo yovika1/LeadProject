@@ -36,9 +36,11 @@ export const Login = () => {
     setMessage(""); // Clear message if CAPTCHA is valid
 
     try {
-      const resLogin = await axios.post("https:/leads-project-7.onrender.com/loginuser", {
+      const resLogin = await axios.post("https://leads-project-7.onrender.com/loginuser", {
         UserName: value.UserName,
         password: value.password,
+      }, {
+        withCredentials: true, // Include credentials if needed for sessions/cookies
       });
 
       if (resLogin?.status === 200) {
@@ -53,10 +55,12 @@ export const Login = () => {
         }
       } else {
         setValue({ UserName: "", password: "" });
+        setMessage("Failed to log in, please try again.");
       }
     } catch (error) {
-      alert("Invalid Credentials");
-      console.error("Something went wrong while logging in", error);
+      const errorMsg = error.response?.data?.message || "Invalid Credentials";
+      setMessage(errorMsg);
+      console.error("Something went wrong while logging in", error.response || error.message);
     }
   };
 
